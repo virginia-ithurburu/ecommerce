@@ -11,7 +11,7 @@ function Item ({ prod }) {
     }
 
     return (
-        <Col xs={3} >
+            <Col className="py-2">
             <Card style={{ width: '18rem' }} >
                         <Card.Img variant="top" src={prod.img} />
                         <Card.Body>
@@ -22,7 +22,7 @@ function Item ({ prod }) {
                             <ItemCount initial={1} stock={ prod.stock } onAdd= { onAdd } />
                         </Card.Body>
                     </Card>
-        </Col>        
+            </Col>    
         
     )
 }

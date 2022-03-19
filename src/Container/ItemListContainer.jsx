@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from "react-router-dom";
-import { getItem } from '../helpers/getItem';
+import { getItem, getItems } from '../helpers/getItem';
 import ItemList from '../components/ItemList/ItemList';
 import Spinner from 'react-bootstrap/esm/Spinner'
 
@@ -13,12 +13,12 @@ function ItemListContainer ( { saludar } ) {
 
   useEffect (() => {
     if (id) {
-      getItem        
+      getItems        
       .then(resp => setProds(resp.filter(prod=> prod.category === id)))
       .catch(err => console.log(err))
       .finally(()=> setLoading(false))           
   } else {
-      getItem       
+      getItems       
       .then(resp => setProds(resp))
       .catch(err => console.log(err))
       .finally(()=> setLoading(false))            
