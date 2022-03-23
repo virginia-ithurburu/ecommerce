@@ -9,20 +9,25 @@ import ItemDetail from '../../components/ItemDetail/ItemDetail';
 
 function ItemDetailContainer () {
     const [ loading, setLoading ] = useState(true)
-    const [prod, setProds ] = useState([])
+    const [prod, setProds ] = useState({})
     const { id } = useParams()
+    
+    
+
+
     console.log(id)
     console.log(prod)
+    
 
     useEffect (() => {
         getItems        
-        .then(resp => setProds(resp.find(prod => prod.id === 1)))
+        .then(prod => setProds(prod.find(prod => prod.id === parseInt(id))))
         .catch(err => console.log(err))
         .finally(()=> setLoading(false))           
       
   }, [])
   
-  
+
    return (
      
      <div>
