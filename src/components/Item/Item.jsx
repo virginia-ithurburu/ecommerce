@@ -12,10 +12,10 @@ function Item ({ prod }) {
 
     return (
         
-            <Col className="py-2">
-            <Card style={{ width: '18rem' }} >
-                <Link to={`detail/${prod.id}`}>
-                        <Card.Img variant="top" src={prod.img} />
+            <Col className="py-2 mt-5 align-self-center">
+            <Card className="border border-white" style={{ width: '18rem' }} >
+                <Link style={{textDecoration: 'none', color:'black'}} to={`detail/${prod.id}`}>
+                        <Card.Img variant="top" className="rounded-pill" src={prod.img} />
                         <Card.Body>
                             <Card.Title>{prod.name}</Card.Title>
                             <Card.Text>

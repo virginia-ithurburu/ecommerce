@@ -18,13 +18,13 @@ function App() {
           <Route 
             path="/"
             element= {
-              <ItemListContainer saludar='Holi soy el ItemListContainer, el super catalogo esta en proceso! :D'  />
+              <ItemListContainer />
             }
           />
           <Route
             path="/category/:id"
             element={
-              <ItemListContainer saludar="Holi soy el ItemListContainer"/>
+              <ItemListContainer />
             }
           />
           <Route
@@ -34,17 +34,23 @@ function App() {
             }
           />
           <Route
+            path="/category/:detail/detail/:id"
+            element={
+              <ItemDetailContainer />
+            }
+          />
+           <Route
               path="/error"
               element={
                 <PageNotfound />
               }  
-            />
-          <Route
+            /> 
+           <Route
             path="/*"
             element={
               <Navigate to="/error" />
             }
-          />
+          /> 
           <Route
             path="/cart"
             element={

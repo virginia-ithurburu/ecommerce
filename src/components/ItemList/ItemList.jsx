@@ -6,7 +6,7 @@ function ItemList ({ prods }) {
     return (
         <>
         <Container>
-        <Row>
+        <Row className="justify-content-center">
             {prods.map((prod) => <Item prod={prod} key={prod.id} /> )}
         </Row>
         </Container>
