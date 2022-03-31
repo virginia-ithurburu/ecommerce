@@ -6,6 +6,7 @@ import ItemCount from "../ItemCount/ItemCount"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import Button from "react-bootstrap/esm/Button"
+import { useCartContext } from "../../Context/CartContext"
 
 
 
@@ -16,9 +17,13 @@ function ItemDetail ({products}) {
     
     const [ onButton, setonButton ] = useState ('button')
 
+    const {addToCart} = useCartContext()
+
     const onAdd = (cant) => {
         console.log(cant)
         setonButton('on')
+        addToCart({... products, Lot: cant, Total: cant * products.price })
+
     }
 
     const GotoCart = () => {

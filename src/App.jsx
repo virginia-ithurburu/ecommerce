@@ -6,11 +6,13 @@ import ItemDetailContainer from './Container/ItemDetailContainer/ItemDetailConta
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import PageNotfound from './components/ErrorPage/ErrorPage';
+import CartContextProvider from './Context/CartContext'
+
 
 
 function App() {
   return (
-
+    <CartContextProvider value={[]}>
     <BrowserRouter>
     <div className='App'>
         <NavBar />
@@ -61,6 +63,7 @@ function App() {
         </Routes>
     </div>
     </BrowserRouter>
+    </CartContextProvider>
   )
 }
 
