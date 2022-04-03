@@ -14,11 +14,6 @@ function ItemDetailContainer () {
     
     
 
-
-    console.log(id)
-    console.log(prod)
-    
-
     useEffect (() => {
         getItems        
         .then(prod => setProds(prod.find(prod => prod.id === parseInt(id))))

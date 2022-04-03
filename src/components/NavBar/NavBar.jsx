@@ -21,10 +21,10 @@ function NavBar() {
         <Nav.Link><NavLink style={{textDecoration: 'none', color:'white'}} to='/'>Home</NavLink></Nav.Link>
           <NavLink style={{textDecoration: 'none'}} to=''><Nav.Link>About Us</Nav.Link></NavLink>
           <NavDropdown title="Products" id="collasible-nav-dropdown">
-          <NavDropdown.Item><NavLink to='category/female'>Clothes Female</NavLink></NavDropdown.Item>
-            <NavDropdown.Item><NavLink to='category/male'>Clothes Male</NavLink></NavDropdown.Item>
+          <NavDropdown.Item><NavLink style={{textDecoration: 'none', color:'black'}} to='category/female'>Clothes Female</NavLink></NavDropdown.Item>
+            <NavDropdown.Item><NavLink style={{textDecoration: 'none', color:'black'}} to='category/male'>Clothes Male</NavLink></NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item><NavLink to='category/objects'>Accessories</NavLink></NavDropdown.Item>
+            <NavDropdown.Item><NavLink style={{textDecoration: 'none', color:'black'}} to='category/objects'>Accessories</NavLink></NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Nav>

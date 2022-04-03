@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 
@@ -8,12 +9,32 @@ import { useContext } from "react";
 
 
 function CartContextProvider({children}) {
+
+    const cartLocalStorage = JSON.parse(localStorage.getItem('cart')) || [] 
     
-    const [cartList, setCartList] = useState([]) 
+    const [cartList, setCartList] = useState(cartLocalStorage) 
+
+    useEffect (() => {  localStorage.setItem('cart', JSON.stringify(cartList))}
+    
+    ,[cartList])
+
+    const sumTotal = () => {
+        const reducer = (accumalator, currentValue) => accumalator + currentValue.Total;
+        const sum = cartList.reduce(reducer, 0);
+        return sum.toFixed(2);
+    }
 
     const addToCart = (product) => {
+        const existingprod = cartList.find (prod => prod.id === product.id)
+        if (existingprod){ console.log(existingprod)
+            existingprod.Lot += product.Lot
+            existingprod.Total += product.Total
+            setCartList(cartList)
+            sumTotal(product)
+        } else {
         setCartList([...cartList, product])
-    }
+        sumTotal(product)
+    }}
 
     const removeListCart = () => {
         setCartList([])
@@ -25,11 +46,11 @@ function CartContextProvider({children}) {
       setCartList(newList)
     }
 
-    const sumTotal = () => {
-		const reducer = (accumalator, currentValue) => accumalator + currentValue.Total;
-		const sum = cartList.reduce(reducer, 0);
-		return sum;
-	}
+    const countTotalItem = () => {
+      return cartList.reduce((acum, product) => acum += product.Lot, 0)
+    }
+
+
 
 
     return (
@@ -38,7 +59,8 @@ function CartContextProvider({children}) {
         addToCart,
         removeListCart,
         removeItemCart,
-        sumTotal
+        sumTotal,
+        countTotalItem,
     }}>
     { children }
     </CartContext.Provider>

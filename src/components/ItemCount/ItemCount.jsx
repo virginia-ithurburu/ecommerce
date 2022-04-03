@@ -10,15 +10,13 @@ const ItemCount = ({ initial, stock, onAdd }) => {
   
     const handleIncrease = () =>{
         if (count < stock) {
-            setCount ( count + 1 )
-            console.log(count)
+            setCount ( count + 1 );  
         }
     }
 
     const handleDecrease = () =>{
         if (count > initial){
-            setCount ( count - 1 )
-            console.log(count)
+            setCount(Math.max( count - 1, 0));
         }
     }
 

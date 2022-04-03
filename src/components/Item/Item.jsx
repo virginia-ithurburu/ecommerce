@@ -6,10 +6,6 @@ import ItemCount from "../ItemCount/ItemCount";
 
 function Item ({ prod }) {
 
-    const onAdd = (cant) => {
-        console.log(cant)
-    }
-
     return (
         
             <Col className="py-2 mt-5 align-self-center">
@@ -23,7 +19,7 @@ function Item ({ prod }) {
                             </Card.Text>   
                         </Card.Body>
                 </Link>
-                <ItemCount initial={1} stock={ prod.stock } onAdd= { onAdd } />
+
                     </Card>
             </Col>    
         
