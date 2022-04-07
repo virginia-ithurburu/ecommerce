@@ -1,4 +1,4 @@
-const products = [
+/* const products = [
     { id: 1, category: 'female', name: "The Witcher X BlackMilk: Witcher Schools Swoop Dress", price: 78.50, img:'https://blackmilkclothing.com/media/catalog/product/p/h/phi-2021.10.121457.jpg?quality=80&fit=cover&height=945&width=630', stock: 120, description:"Wolf, Cat, Bear, Viper, Griffin — whatever witcher school you gravitate toward, each one has the same ultimate goal: to train the Continent’s most formidable monster slayers. This witcher school dress has a slightly different goal: to make sure you look as stunning and badass as can be. We think it’ll do pretty well." },
     { id: 2, category: 'female', name: "The Witcher X BlackMilk: Yennefer Burned Velvet Romance Dress", price: 78.50, img:'https://blackmilkclothing.com/media/catalog/product/p/h/phi-2021.10.121720.jpg?quality=80&fit=cover&height=945&width=630', stock: 10, description: "Just one glance and it’s clear: this dress radiates with the incomparable style of Yennefer of Vengerberg. Charming, sophisticated, and supremely spellbinding — wearing this will always give you that magic touch." },
     { id: 3, category: 'female', name: "The Witcher X BlackMilk: World of the Witcher Bomber Jacket", price: 93.90, img:'https://blackmilkclothing.com/media/catalog/product/p/h/phi-2021.10.122376.jpg?quality=80&fit=cover&height=945&width=630', stock: 80, description: "Two tips for any tenacious traveller starting out on the Path: know where you’re going and make sure you’re dressed appropriately. Fortunately, this hardy bomber jacket, lined with a map showcasing the extreme terrain of the Continent, has you covered on both fronts. Let your epic adventure begin!" },
@@ -28,3 +28,4 @@ export const getItems = new Promise((resolve, reject)=>{
     }
 })
 
+ */

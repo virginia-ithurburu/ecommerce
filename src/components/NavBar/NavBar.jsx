@@ -1,5 +1,5 @@
 import Container  from "react-bootstrap/Container"
-import { NavLink, Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import NavDropdown from "react-bootstrap/NavDropdown"
@@ -9,17 +9,18 @@ import CartWidget from "../Widget/CartWidget"
 function NavBar() {
   return (
     
+
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
+      <Container fluid >
       <NavLink to='/'>
       <img src="https://www.overclockersclub.com/siteimages/news/news36221_12989-cd_projekt_red_unveils_new_logos_for_the_studio_and_the_witcher_3.png" width="70"  className="d-inline-block align-top px-2" />
       </NavLink>
-      <Navbar.Brand><NavLink style={{textDecoration: 'none', color:'white'}} to='/'>CD Projekt Red</NavLink></Navbar.Brand>
+      <Navbar.Brand>CD Projekt Red</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
         <Nav.Link><NavLink style={{textDecoration: 'none', color:'white'}} to='/'>Home</NavLink></Nav.Link>
-          <NavLink style={{textDecoration: 'none'}} to=''><Nav.Link>About Us</Nav.Link></NavLink>
+          <NavLink style={{textDecoration: 'none'}} to='/'><Nav.Link>About Us</Nav.Link></NavLink>
           <NavDropdown title="Products" id="collasible-nav-dropdown">
           <NavDropdown.Item><NavLink style={{textDecoration: 'none', color:'black'}} to='category/female'>Clothes Female</NavLink></NavDropdown.Item>
             <NavDropdown.Item><NavLink style={{textDecoration: 'none', color:'black'}} to='category/male'>Clothes Male</NavLink></NavDropdown.Item>
@@ -35,6 +36,8 @@ function NavBar() {
       </Navbar.Collapse>
       </Container>
     </Navbar>
+
+
 
   )
 }

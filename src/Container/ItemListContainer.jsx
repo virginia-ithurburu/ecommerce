@@ -1,28 +1,33 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from "react-router-dom";
-import { getItem, getItems } from '../helpers/getItem';
 import ItemList from '../components/ItemList/ItemList';
 import Spinner from 'react-bootstrap/esm/Spinner'
-
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
 
 function ItemListContainer ( { saludar } ) {
   const [ loading, setLoading ] = useState(true)
   const [prods, setProds ] = useState([])
   const { id } = useParams()
 
-  useEffect (() => {
-    if (id) {
-      getItems        
-      .then(resp => setProds(resp.filter(prod=> prod.category === id)))
-      .catch(err => console.log(err))
-      .finally(()=> setLoading(false))           
-  } else {
-      getItems       
-      .then(resp => setProds(resp))
-      .catch(err => console.log(err))
-      .finally(()=> setLoading(false))            
-  }
+
+useEffect (() => {
+  const dataBase = getFirestore()
+
+
+
+  const queryCollection = !id
+              ?
+      collection (dataBase, 'items')
+
+              :
+      query(collection(dataBase, 'items'),
+        where ('category', '==', id))
+
+  getDocs(queryCollection)
+  .then(resp => setProds( resp.docs.map(product =>( { id: product.id, ... product. data()}))))
+  .catch(err => console.log(err))
+  .finally(()=> setLoading(false)) 
 
 }, [id])
 

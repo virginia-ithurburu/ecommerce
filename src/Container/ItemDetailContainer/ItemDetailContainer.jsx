@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from "react-router-dom";
-import { getItems } from '../../helpers/getItem';
 import Spinner from 'react-bootstrap/esm/Spinner'
 import ItemDetail from '../../components/ItemDetail/ItemDetail';
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
 
 
@@ -15,8 +15,10 @@ function ItemDetailContainer () {
     
 
     useEffect (() => {
-        getItems        
-        .then(prod => setProds(prod.find(prod => prod.id === parseInt(id))))
+        const dataBase = getFirestore()
+        const queryDoc = doc( dataBase, 'items', id)  
+        getDoc(queryDoc)    
+        .then(resp => setProds({ id: resp.id, ...resp.data()}))
         .catch(err => console.log(err))
         .finally(()=> setLoading(false))           
       
