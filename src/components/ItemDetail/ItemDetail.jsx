@@ -60,7 +60,7 @@ return (
     <Container>
               <Row  className="justify-content-center mt-5">
                 <Col md="auto" className="align-self-center ">
-                <img className="rounded-pill" src={products.img} style= {{ width:'20rem'}}/>
+                <img className="rounded-pill" src={products.img} style= {{ width:'20rem'}} alt='product'/>
                 </Col>
                 <Col md={6} className="align-self-center ">
                 <Card border="light" className="shadow p-3 mb-5 rounded" style={{  width: '35rem', background: '#F2F2F0' }}>

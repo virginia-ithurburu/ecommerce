@@ -7,12 +7,73 @@ import Row from "react-bootstrap/esm/Row"
 import { useCartContext } from "../../Context/CartContext"
 import { Link } from "react-router-dom"
 import Image from "react-bootstrap/esm/Image"
-
+import Form from "react-bootstrap/esm/Form"
+import Modal from "react-bootstrap/esm/Modal"
+import { useState } from "react"
+import { addDoc, collection, documentId, getDocs, getFirestore, query, where, writeBatch } from 'firebase/firestore'
 
 
 function Cart() {
 
     const { cartList, removeListCart, removeItemCart, sumTotal } = useCartContext()
+    const [ dataForm, setDataForm ] = useState ({ email:'', name:'', phone:'' })
+    const [ id, setId ] = useState(null)
+
+
+
+    const buyOrder = async (e) => {
+        e.preventDefault();
+
+        let order = {}
+
+        order.buyer = dataForm
+            order.total = sumTotal()
+        
+            order.items = cartList.map(cartItem => {
+                const id = cartItem.id
+                const name = cartItem.name
+                const price = cartItem.price * cartItem.Lot
+                
+                return {id, name, price}   
+            })
+            
+            const dataBase = getFirestore()
+            const queryCollectionItems = collection(dataBase, 'orders')
+            await addDoc(queryCollectionItems, order) 
+            .then(({ id }) => setId(id))
+            .catch(err => console.log(err))
+            .finally(() => removeListCart())
+
+            const queryCollection = collection(dataBase, 'items')
+
+            const queryUpDateStock = await query(
+              queryCollection, 
+              where( documentId() , 'in', cartList.map(it => it.id) )          
+            )
+
+            const batch = writeBatch(dataBase)
+
+            await getDocs(queryUpDateStock)
+              .then(resp => resp.docs.forEach(res => batch.update(res.ref, {
+                  stock: res.data().stock - cartList.find(item => item.id === res.id).Lot
+            }) ))
+            .finally(()=> console.log('actulalizado'))
+
+            batch.commit()
+    }
+
+    const handleChange = (e) => {
+      setDataForm( {
+        ...dataForm,
+        [e.target.name]: e.target.value
+    } )
+  }
+
+
+
+
+
+
 
 
     const FullCart = () => {
@@ -56,7 +117,7 @@ function Cart() {
               </Col>
               <Col className="align-self-center mx-5" md="auto">
               <Stack gap={2}>
-                <Button  variant="danger" className="fw-bold" onClick={removeListCart}>
+                <Button  variant="secondary" className="fw-bold" onClick={removeListCart}>
                     Clear Cart
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" className="p-1 bi bi-cart-x" viewBox="0 0 16 16">
                     <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793 7.354 5.646z"/>
@@ -71,6 +132,44 @@ function Cart() {
                     </svg>
                 </Button>
                 </Link>
+                <br />
+                <>
+                  <Form>
+                  <Form.Control
+                    type="text"
+                    name='name'
+                    placeholder="Name & Surname"
+                    value={dataForm.name}
+                    onChange={handleChange}
+                    
+                  />
+                  <Form.Control
+                    type="text"
+                    name='phone'
+                    placeholder="Phone"
+                    value={dataForm.phone}
+                    onChange={handleChange}                    
+                    
+                    />
+                  <Form.Control
+                    type="email"
+                    name='email'
+                    placeholder="Email"
+                    value={dataForm.email}
+                    onChange={handleChange}                    
+                    
+                    />
+                    </Form>
+                </>
+                <Button  variant="success" className="fw-bold" onClick={buyOrder}>
+                    Generate order
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" className="p-1 bi bi-cash-coin" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+                    <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+                    <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
+                    <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
+                    </svg>
+                </Button>
               </Stack>
               </Col>
               </Row>
@@ -103,7 +202,23 @@ function Cart() {
     
 
     return (
+
+
+
           <Container>
+
+{id &&
+        <Modal.Dialog>
+                        <Modal.Header>
+                          <Modal.Title>Thanks for your purchase!</Modal.Title>
+                        </Modal.Header>
+        
+                        <Modal.Body>
+                          <p>Your purchase's id is {id}, keep it and for any drawback, you can contacts us!</p>
+                        </Modal.Body>
+                      </Modal.Dialog>}
+
+
             {
               cartList.length > 0  ?
 
