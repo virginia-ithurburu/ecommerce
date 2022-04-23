@@ -3,7 +3,8 @@ import { useState } from 'react'
 import { useParams } from "react-router-dom";
 import Spinner from 'react-bootstrap/esm/Spinner'
 import ItemDetail from '../../components/ItemDetail/ItemDetail';
-import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { doc, getDoc, getFirestore } from '@firebase/firestore';
+
 
 
 
@@ -28,12 +29,13 @@ function ItemDetailContainer () {
    return (
      
      <div>
+         
      {       loading ? <Spinner animation="grow" /> 
                       :
                           <ItemDetail products={prod} />
-                  }
+     }
                   
-                  </div>
+    </div>
   
    )
 }

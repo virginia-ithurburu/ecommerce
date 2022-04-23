@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useParams } from "react-router-dom";
 import ItemList from '../components/ItemList/ItemList';
 import Spinner from 'react-bootstrap/esm/Spinner'
-import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
+import { collection, getDocs, getFirestore, query, where } from '@firebase/firestore'
 
 function ItemListContainer ( { saludar } ) {
   const [ loading, setLoading ] = useState(true)

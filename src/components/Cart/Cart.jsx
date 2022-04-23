@@ -10,7 +10,7 @@ import Image from "react-bootstrap/esm/Image"
 import Form from "react-bootstrap/esm/Form"
 import Modal from "react-bootstrap/esm/Modal"
 import { useState } from "react"
-import { addDoc, collection, documentId, getDocs, getFirestore, query, where, writeBatch } from 'firebase/firestore'
+import { addDoc, collection, documentId, getDocs, getFirestore, query, where, writeBatch } from '@firebase/firestore'
 
 
 function Cart() {

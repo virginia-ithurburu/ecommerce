@@ -12,8 +12,8 @@ import CartContextProvider from './Context/CartContext'
 
 function App() {
   return (
-    <CartContextProvider value={[]}>
     <BrowserRouter>
+    <CartContextProvider value={[]}>
     <div className='App'>
         <NavBar />
         <Routes>
@@ -62,8 +62,8 @@ function App() {
 
         </Routes>
     </div>
-    </BrowserRouter>
     </CartContextProvider>
+    </BrowserRouter>
   )
 }
 
