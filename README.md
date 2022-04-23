@@ -9,15 +9,13 @@
 *Esta Pagina web se ha realizado para ser presentada en el proyecto final del curso de React JS. *
 
 
-###Herramientas utilizadas
-                
-----
+###Herramientas utilizadas y versiones
 
 ![](https://img.shields.io/badge/React%20Js-17.0.2-lightgrey)
 ![](https://img.shields.io/badge/Bootstrap-5.1.3-blue)
 ![](https://img.shields.io/badge/Firebase-9.6.11-brightgreen)
 
-
+----
 *Utilizando una API obtenida por medio de Firebase de Google se ha podido realizar el siguiente proyecto que consta de:*
 
 
