@@ -1,7 +1,6 @@
 import Card from "react-bootstrap/esm/Card";
 import Col from "react-bootstrap/esm/Col";
 import { Link } from "react-router-dom";
-import ItemCount from "../ItemCount/ItemCount";
 
 
 function Item ({ prod }) {

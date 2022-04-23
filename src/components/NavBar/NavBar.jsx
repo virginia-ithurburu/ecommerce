@@ -12,7 +12,7 @@ function NavBar() {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container fluid >
           <NavLink to='/'>
-          <img src="https://www.overclockersclub.com/siteimages/news/news36221_12989-cd_projekt_red_unveils_new_logos_for_the_studio_and_the_witcher_3.png" width="70"  className="d-inline-block align-top px-2" />
+          <img src="https://www.overclockersclub.com/siteimages/news/news36221_12989-cd_projekt_red_unveils_new_logos_for_the_studio_and_the_witcher_3.png" width="70" alt="logo" className="d-inline-block align-top px-2" />
           </NavLink>
           <Navbar.Brand>CD Projekt Red</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -25,7 +25,7 @@ useEffect (() => {
         where ('category', '==', id))
 
   getDocs(queryCollection)
-  .then(resp => setProds( resp.docs.map(product =>( { id: product.id, ... product. data()}))))
+  .then(resp => setProds( resp.docs.map(product =>( { id: product.id, ...product.data()}))))
   .catch(err => console.log(err))
   .finally(()=> setLoading(false)) 
 
