@@ -21,8 +21,7 @@ function ItemDetailContainer () {
         getDoc(queryDoc)    
         .then(resp => setProds({ id: resp.id, ...resp.data()}))
         .catch(err => console.log(err))
-        .finally(()=> setLoading(false))           
-      
+        .finally(()=> setLoading(false))               
   }, [])
   
 

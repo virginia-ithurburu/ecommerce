@@ -21,7 +21,7 @@ function ItemDetail ({products}) {
 
     const onAdd = (cant) => {
         setonButton('on')
-        addToCart({... products, Lot: cant, Total: cant * products.price })
+        addToCart({...products, Lot: cant, Total: cant * products.price })
     }
 
     
