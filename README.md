@@ -1,5 +1,5 @@
 
-:tw-3030: Cd Projekt Red :tw-3030:
+ Cd Projekt Red :sparkle:
 =============
 
 *Ecommerce*
